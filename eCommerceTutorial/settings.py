@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'product.apps.ProductConfig',
     'home.apps.HomeConfig',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -120,10 +121,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/uploads/"
 MEDIA_ROOT = BASE_DIR / "uploads"
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'

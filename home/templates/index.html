@@ -1,10 +1,15 @@
-{% extends 'homebase.html' %}
+{% extends 'homebase.html' %} {% load static %}
 <!-- prettier-ignore -->
-{% block title %} İndex Sayfası {% endblock %}
-{% block keywords %} İndex Sayfası Anahtar kelimeleri {% endblock %}
-{% block description %} İndex Sayfası Açıklama {% endblock %}
+{% block title %} {{ setting.title }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }} {% endblock %}
 
+{% block head %}
+<!-- prettier-ignore -->
+<link type="image/png" rel="icon" sizes="96x96" href="{{ setting.icon.url }}" />
+{% endblock %}
 
+<!-- prettier-ignore -->
 {% block sidebar %}
     {% include 'sidebar.html' %}
 {% endblock %}

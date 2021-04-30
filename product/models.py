@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
@@ -34,10 +35,10 @@ class Product(models.Model):
         max_length=255, verbose_name="Anahtar Kelimeler")
     description = models.CharField(max_length=255, verbose_name="Açıklama")
     image = models.ImageField(verbose_name="Resim",
-                              upload_to="images", blank=True)
+                              upload_to="images/", blank=True)
     category = models.ForeignKey(
         Category, blank=True, null=True, on_delete=models.CASCADE)
-    detail = models.TextField(verbose_name="detaylar")
+    detail = RichTextField()
     price = models.FloatField()
     amount = models.IntegerField()
     slug = models.SlugField()
@@ -46,3 +47,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def image_tag(self):
+        return
+
+
+class Image(models.Model):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="product")
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="images/", blank=True)

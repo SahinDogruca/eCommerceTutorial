@@ -1,0 +1,39 @@
+{% extends 'homebase.html' %} {% load static %}
+<!-- prettier-ignore -->
+{% block title %} Hakkımızda-{{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }} {% endblock %}
+
+{% block head %}
+<!-- prettier-ignore -->
+<link type="image/png" rel="icon" sizes="96x96" href="{{ setting.icon.url }}" />
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+{% block body %}
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+	<div class="container">
+		<ul class="breadcrumb">
+			<li><a href="#">Anasayfa</a></li>
+			<li class="active">Hakkımızda</li>
+		</ul>
+	</div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">{{ setting.aboutus|safe }}</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->
+{% endblock %}
