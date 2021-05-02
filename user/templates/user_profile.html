@@ -1,0 +1,78 @@
+{% extends 'homebase.html' %} {% load static %}
+<!-- prettier-ignore -->
+{% block title %} {{ user.username }} profile {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }} {% endblock %}
+
+{% block head %}
+<!-- prettier-ignore -->
+<link type="image/png" rel="icon" sizes="96x96" href="{{ setting.icon.url }}" />
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+{% block body %}
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+	<div class="container">
+		<ul class="breadcrumb">
+			<li><a href="{% url 'index' %}">Anasayfa</a></li>
+			<li class="active">User Profile</li>
+		</ul>
+	</div>
+</div>
+<!-- /BREADCRUMB -->
+<!-- section -->
+<div class="section" style="padding-top: 15px">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-3">
+				<div class="aside">
+					<h3 class="aside-title">User Infos</h3>
+					<ul class="list-links">
+						<li><a href="#">My Comments</a></li>
+						<li><a href="{% url 'user_orders' %}">My Orders</a></li>
+						<li><a href="#">My Products</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div style="text-align: center">
+					<a class="primary-btn" href="{% url 'user_update' %}">Change Infos</a>
+					<a href="{% url 'change_password' %}" class="primary-btn">Change Password</a>
+					<img src="{{ user_profile.image.url }}" alt="" />
+				</div>
+				<table class="shopping-cart-table table">
+					<tr>
+						<th>Name</th>
+						<td>{{ user_profile.user_name }}</td>
+					</tr>
+					<tr>
+						<th>Phone</th>
+						<td>{{ user_profile.phone }}</td>
+					</tr>
+					<tr>
+						<th>address</th>
+						<td>{{ user_profile.address }}</td>
+					</tr>
+					<tr>
+						<th>City</th>
+						<td>{{ user_profile.city }}</td>
+					</tr>
+					<tr>
+						<th>Country</th>
+						<td>{{ user_profile.country }}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->
+{% endblock %}

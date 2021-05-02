@@ -1,0 +1,73 @@
+{% extends 'homebase.html' %} {% load static %}
+<!-- prettier-ignore -->
+{% block title %} {{ user.username }} profile {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }} {% endblock %}
+
+{% block head %}
+<!-- prettier-ignore -->
+<link type="image/png" rel="icon" sizes="96x96" href="{{ setting.icon.url }}" />
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+{% block body %}
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+	<div class="container">
+		<ul class="breadcrumb">
+			<li><a href="{% url 'index' %}">Anasayfa</a></li>
+			<li class="active">User Orders</li>
+		</ul>
+	</div>
+</div>
+<!-- /BREADCRUMB -->
+<!-- section -->
+<div class="section" style="padding-top: 15px">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+            <div class="col-md-3">
+				<div class="aside">
+					<h3 class="aside-title">User Infos</h3>
+					<ul class="list-links">
+						<li><a href="#">My Comments</a></li>
+						<li><a href="{% url 'user_orders' %}">My Orders</a></li>
+						<li><a href="#">My Products</a></li>
+					</ul>
+				</div>
+			</div>
+            <div class="col-md-9">
+                <table class=" table">
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Detail</th>
+                    </tr>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.first_name }}</td>
+                        <td>{{ order.last_name }}</td>
+                        <td>{{ order.total }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.create_at }}</td>
+                        <td><a href="{% url 'user_order_details' order.id %}" class="primary-btn">Detay</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->
+{% endblock %}

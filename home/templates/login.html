@@ -1,0 +1,62 @@
+{% extends 'homebase.html' %} {% load static %}
+<!-- prettier-ignore -->
+{% block title %} İletişim-{{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }} {% endblock %}
+
+{% block head %}
+<!-- prettier-ignore -->
+<link type="image/png" rel="icon" sizes="96x96" href="{{ setting.icon.url }}" />
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+{% block body %}
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+	<div class="container">
+		<ul class="breadcrumb">
+			<li><a href="{% url 'index' %}">Anasayfa</a></li>
+			<li class="active">Login</li>
+		</ul>
+	</div>
+</div>
+<!-- /BREADCRUMB -->
+{% if messages %} {% for message in messages %}
+<div class="container">
+	<div
+		class="alert alert-{{ message.tags }}"
+		role="alert"
+		style="margin-top: 20px; margin-bottom: 0"
+	>
+		{{ message }}
+	</div>
+</div>
+{% endfor %} {% endif %}
+
+<!-- section -->
+<div class="section" style="padding-top: 15px">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<form id="checkout-form" class="clearfix" action="{% url 'login' %}" method="POST">
+				{% csrf_token %}
+
+				<div class="form-group">
+					<input class="input" type="text" name="username" placeholder="Username" />
+				</div>
+				<div class="form-group">
+					<input class="input" type="password" name="password" placeholder="password" />
+				</div>
+				<button type="submit" class="btn btn-primary">Login</button>
+			</form>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->
+{% endblock %}

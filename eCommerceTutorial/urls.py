@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('product/', include('product.urls')),
+    path('user/', include("user.urls"), name="user"),
+    path('order/', include("order.urls")),
 ]
 
 if settings.DEBUG:  # ! hata verse bile hata değil çalışıyour pylance bugu
